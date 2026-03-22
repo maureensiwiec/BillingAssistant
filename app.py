@@ -48,7 +48,6 @@ with col2:
         - Workflow-oriented AI support
         """
     )
-
 if generate:
     try:
         d = int(days) if days else 0
@@ -56,37 +55,61 @@ if generate:
         d = 0
 
     st.markdown("---")
-    st.subheader("Output")
+    st.subheader("Before vs After")
 
-    out1, out2, out3 = st.columns(3)
+    before, after = st.columns(2)
 
-    with out1:
-        st.markdown("### Improved Invoice Description")
+    with before:
+        st.markdown("### Before")
+        st.error(
+            "Invoice: Consulting Services Q3\n\n"
+            "No context, unclear value, and no proactive follow-up."
+        )
+        st.write("• Generic invoice description")
+        st.write("• No structured follow-up")
+        st.write("• Risk not visible")
+
+    with after:
+        st.markdown("### After (AI Enhanced)")
+        st.success(
+            "Q3 financial workflow optimization including reporting improvements "
+            "and reconciliation support."
+        )
+        st.write("• Clear invoice value")
+        st.write("• Smart follow-up suggested")
+        st.write("• Risk surfaced early")
+
+    st.markdown("---")
+    st.subheader("AI-Generated Outputs")
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.markdown("### Invoice Clarity")
         st.info(
             "Q3 financial workflow optimization and reporting improvements, "
             "including reconciliation support and process efficiency updates."
         )
 
-    with out2:
-        st.markdown("### Suggested Follow-Up Email")
+    with col2:
+        st.markdown("### Follow-Up")
         st.success(
             f"Hi {client or '[Client]'}, just checking in on the outstanding invoice "
-            f"for {amount or '[Amount]'}. Let me know if you need any clarification on the work completed. "
-            "Happy to walk through it."
+            f"for {amount or '[Amount]'}. Let me know if you need clarification."
         )
 
-    with out3:
-        st.markdown("### Risk Insight")
+    with col3:
+        st.markdown("### Risk")
         if d >= 25:
-            st.warning("Elevated collection risk. Recommend follow-up within 2 days.")
+            st.warning("High risk – follow up within 2 days")
         elif d >= 10:
-            st.info("Monitor closely. Consider a reminder this week.")
+            st.info("Moderate risk – monitor closely")
         else:
-            st.success("Low current risk based on days outstanding.")
+            st.success("Low risk")
 
     st.markdown("---")
     st.subheader("Why this matters")
     st.write(
-        "The value is not just automation. It is improving invoice clarity, making follow-up timing more consistent, "
-        "and surfacing AR risk earlier in the billing workflow."
+        "This demonstrates how AI improves billing workflows by increasing clarity, "
+        "standardizing follow-ups, and surfacing AR risk earlier."
     )
